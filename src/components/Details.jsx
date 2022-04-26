@@ -6,15 +6,6 @@ const Details = () => {
  
     const {loading,fetchData,data,error,searchData} = UseBitcoinContext();
     let [searchParams, setSearchParams] = useSearchParams();
-
-    React.useEffect(()=>{
-        
-            fetchData();
-        
-        
-
-    },[]);
-    
     const handleSearch = (e)=>{
         const country_code = e.target.value;
         
@@ -35,18 +26,19 @@ const Details = () => {
         
                 
         
+        {loading?"loading......":
         <nav style={{
-          borderRight: "solid 1px",
-          padding: "1rem",
-        }}>
-            <input
-          value={searchParams.get("country_code") || ""}
-          onChange={handleSearch}
-        />
-            {data.map(d=>d.code).sort().map(code=>{
-                return <Link to={`/details/${code}/`} key={code} style={{display:"block",margin:"5px"}} >{code} </Link> 
-            })}
-        </nav>
+            borderRight: "solid 1px",
+            padding: "1rem",
+          }}>
+              <input
+            value={searchParams.get("country_code") || ""}
+            onChange={handleSearch}
+          />
+              {data.map(d=>d.code).sort().map(code=>{
+                  return <Link to={`/details/${code}/`} key={code} style={{display:"block",margin:"5px"}} >{code} </Link> 
+              })}
+          </nav>}
 
             
     

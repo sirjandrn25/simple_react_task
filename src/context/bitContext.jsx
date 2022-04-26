@@ -22,14 +22,18 @@ export const BitCoinProvider = ({children})=>{
    
     
     const fetchData = async()=>{
+        setLoading(true)
         return await fetch(url).then(resp=>resp.json()).then(json_res=>{
             // console.log(json_res)
             const data = json_res.bpi
             setData(Object.values(data));
             setTime(json_res.time);
+            setLoading(false)
             return true
         }).catch(error=>{
+        
             setError(error);
+            setLoading(false);
             return false
         })
         
